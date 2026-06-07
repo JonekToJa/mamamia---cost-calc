@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-canvas text-ink antialiased;
+    font-feature-settings: "tnum" 0;
+  }
+
+  /* Liczby (kwoty) — równe szerokości cyfr dla spokojnych widełek */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-accent-600 px-6 py-4 text-base font-semibold text-white transition-colors hover:bg-accent-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-600 disabled:opacity-50 sm:w-auto;
+  }
+
+  .btn-secondary {
+    @apply inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-line bg-white px-6 py-4 text-base font-semibold text-ink transition-colors hover:border-accent-200 hover:bg-accent-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-600 sm:w-auto;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-2xl px-3 py-3 text-base font-medium text-ink-soft transition-colors hover:bg-line/50 hover:text-ink;
+  }
+
+  .card {
+    @apply rounded-2xl border border-line bg-white p-5 sm:p-6;
+  }
+
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-sm font-medium;
+  }
+}
