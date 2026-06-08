@@ -1,7 +1,6 @@
-// Hard-coded data — a SINGLE object every screen reads from.
-// This is a CLICK-THROUGH prototype: screens read from SAMPLE, they don't compute
-// anything and don't persist anything. Numbers match the pricing model
-// (typical example: care level 3, good language, limited mobility).
+// Sample data — selections + identity used to seed the screens.
+// Prices and availability are NO LONGER hard-coded here: they are computed live
+// from the selection by lib/pricing.ts. This object only holds defaults and placeholders.
 
 export const PRZYKLAD = {
   // --- calculator answers (default selected chips) ---
@@ -12,19 +11,6 @@ export const PRZYKLAD = {
   demencja: "nie", // 'nie' | 'tak'
   poziomJezyka: "dobry", // 'podstawowy' | 'dobry' | 'bardzo_dobry'
   doswiadczenie: "standard", // 'standard' | 'doswiadczona'
-
-  // --- calculator result (hard-coded) ---
-  bruttoMin: 2720,
-  bruttoMax: 3140,
-  dofinansowanie: 1132, // care benefit 599 + respite care 200 + tax relief 333
-  nettoMin: 1590,
-  nettoMax: 2010,
-  wyzywienieMin: 200,
-  wyzywienieMax: 350,
-
-  // --- availability (hard-coded) ---
-  liczbaOpiekunow: 6,
-  startDni: "~7 days",
 
   // --- registration (placeholder) ---
   imie: "Anna",

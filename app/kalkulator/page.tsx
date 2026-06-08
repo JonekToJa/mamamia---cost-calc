@@ -14,6 +14,16 @@ import { AntiFrictionBadge } from "@/components/AntiFrictionBadge";
 import { CalculatorBar } from "@/components/CalculatorBar";
 import { ChevronLeft, ChevronRight, Info } from "@/components/icons";
 import { PRZYKLAD } from "@/lib/dane-przykladowe";
+import {
+  wycena,
+  dostepnosc,
+  regionRzadki,
+  type CalcInput,
+  type Stopien,
+  type Mobilnosc,
+  type Noce,
+  type TakNie,
+} from "@/lib/pricing";
 
 const TOTAL = 5;
 
@@ -26,6 +36,18 @@ export default function KalkulatorPage() {
   const [mobilnosc, setMobilnosc] = useState<string>(PRZYKLAD.mobilnosc);
   const [noce, setNoce] = useState<string>(PRZYKLAD.noce);
   const [demencja, setDemencja] = useState<string>(PRZYKLAD.demencja);
+
+  // Live pricing — recomputed from the current selection on every render (pricing model).
+  // "Not sure" maps to care level 3 as a proxy (the result screen flags it as orientational).
+  const input: CalcInput = {
+    stopienOpieki: stopien === "nie_wiem" ? 3 : (Number(stopien) as Stopien),
+    mobilnosc: mobilnosc as Mobilnosc,
+    demencja: demencja as TakNie,
+    noce: noce as Noce,
+    regionRzadki: regionRzadki(region),
+  };
+  const wyc = wycena(input);
+  const dost = dostepnosc(input);
 
   const isResult = step >= TOTAL;
 
@@ -62,7 +84,7 @@ export default function KalkulatorPage() {
         )}
 
         <div className="mt-5">
-          <ResultCard />
+          <ResultCard wyc={wyc} dost={dost} />
         </div>
 
         {/* Couple-care note — right before the CTA */}
@@ -201,6 +223,7 @@ export default function KalkulatorPage() {
 
       {/* Bottom nav: estimate on the left, Back + Next on the right */}
       <CalculatorBar
+        wyc={wyc}
         nextLabel={step === TOTAL - 1 ? "See estimate" : "Next"}
         onBack={() => (step === 0 ? router.push("/cennik") : setStep((s) => s - 1))}
         onNext={() => setStep((s) => s + 1)}
