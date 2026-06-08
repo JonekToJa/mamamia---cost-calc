@@ -2,7 +2,11 @@
 
 import { Check } from "./icons";
 
-export type ChipOption = { value: string; label: string };
+export type ChipOption = {
+  value: string;
+  label: string;
+  description?: string;
+};
 
 export function ChipSelect({
   options,
@@ -32,13 +36,20 @@ export function ChipSelect({
             role="radio"
             aria-checked={selected}
             onClick={() => onChange(o.value)}
-            className={`flex items-center justify-between gap-3 rounded-2xl border px-4 py-4 text-left text-base transition-colors ${
+            className={`flex items-center justify-between gap-3 rounded-2xl border px-4 py-3.5 text-left transition-colors ${
               selected
                 ? "border-accent-500 bg-accent-50 text-ink ring-1 ring-accent-500"
                 : "border-line bg-white text-ink-soft hover:border-accent-200 hover:bg-accent-50/40"
             }`}
           >
-            <span className="font-medium">{o.label}</span>
+            <span className="min-w-0">
+              <span className="block text-base font-medium">{o.label}</span>
+              {o.description && (
+                <span className="mt-0.5 block text-sm font-normal text-ink-faint">
+                  {o.description}
+                </span>
+              )}
+            </span>
             <span
               className={`grid h-5 w-5 shrink-0 place-items-center rounded-full border transition-colors ${
                 selected

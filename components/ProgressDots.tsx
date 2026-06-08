@@ -8,7 +8,7 @@ export function ProgressDots({
   return (
     <div className="flex items-center justify-between">
       <span className="text-sm font-medium text-ink-soft">
-        Pytanie {current} z {total}
+        Question {current} of {total}
       </span>
       <div className="flex items-center gap-1.5" aria-hidden>
         {Array.from({ length: total }).map((_, i) => (

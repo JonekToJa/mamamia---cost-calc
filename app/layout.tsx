@@ -2,9 +2,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "mamamia — całodobowa opieka domowa",
+  title: "mamamia — round-the-clock home care",
   description:
-    "Ile kosztuje całodobowa opieka dla Twojej mamy — po odliczeniu dofinansowania. Bezpłatnie, anonimowo, bez rejestracji.",
+    "See what round-the-clock home care for your mum really costs — after subsidies. Free, anonymous, no sign-up.",
 };
 
 export const viewport: Viewport = {
@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pl">
+    <html lang="en">
       <body>{children}</body>
     </html>
   );

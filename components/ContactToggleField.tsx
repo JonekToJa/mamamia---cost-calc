@@ -4,7 +4,7 @@ import { useState } from "react";
 import { PRZYKLAD } from "@/lib/dane-przykladowe";
 import { Mail, Phone } from "./icons";
 
-// Przełącznik e-mail / telefon — pokazuje JEDNO pole zależnie od wyboru. Bez walidacji.
+// Email / phone toggle — shows a SINGLE field depending on the choice. No validation.
 export function ContactToggleField() {
   const [kanal, setKanal] = useState<"email" | "telefon">(PRZYKLAD.kanal);
   const [email, setEmail] = useState(
@@ -14,9 +14,9 @@ export function ContactToggleField() {
     PRZYKLAD.kanal === "telefon" ? PRZYKLAD.kontakt : "",
   );
 
-  const opcje = [
-    { k: "email" as const, label: "E-mail", Icon: Mail },
-    { k: "telefon" as const, label: "Telefon", Icon: Phone },
+  const options = [
+    { k: "email" as const, label: "Email", Icon: Mail },
+    { k: "telefon" as const, label: "Phone", Icon: Phone },
   ];
 
   const inputClass =
@@ -25,7 +25,7 @@ export function ContactToggleField() {
   return (
     <div>
       <div className="grid grid-cols-2 gap-1 rounded-2xl border border-line bg-white p-1">
-        {opcje.map(({ k, label, Icon }) => {
+        {options.map(({ k, label, Icon }) => {
           const active = kanal === k;
           return (
             <button
@@ -53,7 +53,7 @@ export function ContactToggleField() {
             inputMode="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="np. jan.kowalski@poczta.pl"
+            placeholder="e.g. jane.doe@email.com"
             className={inputClass}
           />
         ) : (
@@ -62,7 +62,7 @@ export function ContactToggleField() {
             inputMode="tel"
             value={telefon}
             onChange={(e) => setTelefon(e.target.value)}
-            placeholder="np. 600 100 200"
+            placeholder="e.g. +49 600 100 200"
             className={inputClass}
           />
         )}

@@ -20,7 +20,7 @@ export function QuestionStep({
         <p className="mt-3 flex gap-2.5 rounded-xl bg-accent-50 px-3.5 py-3 text-sm text-accent-800">
           <Info className="mt-0.5 h-4 w-4 shrink-0 text-accent-600" />
           <span>
-            {why && <span className="font-medium">Dlaczego pytamy? </span>}
+            {why && <span className="font-medium">Why we ask: </span>}
             {helper}
           </span>
         </p>

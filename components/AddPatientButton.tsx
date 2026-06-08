@@ -4,7 +4,7 @@ import { Plus } from "./icons";
 
 export function AddPatientButton({
   onClick,
-  label = "Dodaj kolejną osobę",
+  label = "Add another person",
 }: {
   onClick: () => void;
   label?: string;

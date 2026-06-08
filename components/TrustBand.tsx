@@ -4,9 +4,9 @@ import { Heart, Shield, Clock } from "./icons";
 type Item = { icon: ComponentType<SVGProps<SVGSVGElement>>; text: string };
 
 const DEFAULT: Item[] = [
-  { icon: Heart, text: "19 lat doświadczenia" },
-  { icon: Shield, text: "opiekunowie sprawdzeni" },
-  { icon: Clock, text: "zgłoszenia w 60 minut" },
+  { icon: Heart, text: "19 years of experience" },
+  { icon: Shield, text: "vetted caregivers" },
+  { icon: Clock, text: "matches within 60 minutes" },
 ];
 
 export function TrustBand({ items = DEFAULT }: { items?: Item[] }) {

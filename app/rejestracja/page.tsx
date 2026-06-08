@@ -6,7 +6,7 @@ import { AppFrame } from "@/components/AppFrame";
 import { ChipSelect } from "@/components/ChipSelect";
 import { ContactToggleField } from "@/components/ContactToggleField";
 import { ConsentCheckbox } from "@/components/ConsentCheckbox";
-import { ChevronRight, Clock } from "@/components/icons";
+import { ChevronRight, Clock, Lock, Eye, EyeOff } from "@/components/icons";
 
 function Field({
   label,
@@ -25,63 +25,94 @@ function Field({
 
 export default function RejestracjaPage() {
   const router = useRouter();
-  // Formularz „dla picu” — bez walidacji, bez zapisu.
+  // Sign-up form — no validation, nothing is saved (prototype).
   const [termin, setTermin] = useState("od_zaraz");
   const [pokoj, setPokoj] = useState("tak");
+  const [haslo, setHaslo] = useState("");
+  const [showPwd, setShowPwd] = useState(false);
   const [zgoda, setZgoda] = useState(false);
 
   return (
     <AppFrame>
       <div className="pt-2">
         <h1 className="text-2xl font-semibold tracking-tight text-ink">
-          Zostaw kontakt — pokażemy dostępnych opiekunów
+          Almost there — create your account
         </h1>
         <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-          Jeszcze trzy szybkie pytania. Doradca dobierze opiekunów pasujących do
-          Twojej sytuacji.
+          A few quick details so your advisor can match caregivers to your
+          situation.
         </p>
       </div>
 
       <div className="mt-7 flex flex-col gap-7">
-        <Field label="Od kiedy potrzebna jest opieka?">
+        <Field label="When is care needed?">
           <ChipSelect
-            ariaLabel="Termin"
+            ariaLabel="Start date"
             value={termin}
             onChange={setTermin}
             options={[
-              { value: "od_zaraz", label: "Od zaraz" },
-              { value: "dwa_tygodnie", label: "W ciągu 2 tygodni" },
-              { value: "ten_miesiac", label: "W tym miesiącu" },
-              { value: "inny", label: "Inny termin" },
+              { value: "od_zaraz", label: "As soon as possible" },
+              { value: "dwa_tygodnie", label: "Within 2 weeks" },
+              { value: "ten_miesiac", label: "This month" },
+              { value: "inny", label: "Another date" },
             ]}
           />
         </Field>
 
-        <Field label="Czy jest osobny pokój dla opiekuna?">
+        <Field label="Is there a separate room for the caregiver?">
           <ChipSelect
-            ariaLabel="Osobny pokój"
+            ariaLabel="Separate room"
             value={pokoj}
             onChange={setPokoj}
             columns={2}
             options={[
-              { value: "tak", label: "Tak" },
-              { value: "nie", label: "Nie" },
+              { value: "tak", label: "Yes" },
+              { value: "nie", label: "No" },
             ]}
           />
         </Field>
 
-        <Field label="Jak się z Tobą skontaktować?">
+        <Field label="How should we reach you?">
           <ContactToggleField />
+        </Field>
+
+        <Field label="Set a password">
+          <div className="relative">
+            <Lock className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-ink-faint" />
+            <input
+              type={showPwd ? "text" : "password"}
+              value={haslo}
+              onChange={(e) => setHaslo(e.target.value)}
+              placeholder="At least 8 characters"
+              autoComplete="new-password"
+              className="w-full rounded-2xl border border-line bg-white py-4 pl-11 pr-12 text-base outline-none transition-colors placeholder:text-ink-faint focus:border-accent-400 focus:ring-2 focus:ring-accent-200"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPwd((v) => !v)}
+              aria-label={showPwd ? "Hide password" : "Show password"}
+              className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg p-1.5 text-ink-faint transition-colors hover:text-ink"
+            >
+              {showPwd ? (
+                <EyeOff className="h-5 w-5" />
+              ) : (
+                <Eye className="h-5 w-5" />
+              )}
+            </button>
+          </div>
+          <p className="mt-2 text-xs text-ink-faint">
+            You&apos;ll use this to sign in to your family panel.
+          </p>
         </Field>
 
         <div className="rounded-2xl border border-line bg-white p-4">
           <ConsentCheckbox checked={zgoda} onChange={setZgoda}>
-            Zgadzam się na kontakt w sprawie doboru opieki i akceptuję
-            regulamin oraz politykę prywatności.
+            I agree to be contacted about arranging care and accept the terms and
+            privacy policy.
           </ConsentCheckbox>
           <p className="mt-3 flex items-center gap-2 border-t border-line pt-3 text-sm text-ink-faint">
             <Clock className="h-4 w-4 text-accent-600" />
-            Doradca odezwie się w ciągu 60 minut.
+            An advisor will get back to you within 60 minutes.
           </p>
         </div>
 
@@ -91,11 +122,11 @@ export default function RejestracjaPage() {
             onClick={() => router.push("/platforma")}
             className="btn-primary"
           >
-            Zarejestruj się
+            Create account
             <ChevronRight className="h-5 w-5" />
           </button>
           <p className="mt-3 text-center text-sm text-ink-faint sm:text-left">
-            Bez zobowiązań · w każdej chwili możesz zrezygnować.
+            No commitment · you can opt out anytime.
           </p>
         </div>
       </div>

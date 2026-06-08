@@ -3,7 +3,7 @@
 export function KodPocztowyInput({
   value,
   onChange,
-  placeholder = "np. 60",
+  placeholder = "e.g. 60",
 }: {
   value: string;
   onChange: (value: string) => void;
@@ -11,11 +11,11 @@ export function KodPocztowyInput({
 }) {
   return (
     <div>
-      <label htmlFor="kod-pocztowy" className="sr-only">
-        Kod pocztowy
+      <label htmlFor="postcode" className="sr-only">
+        Postcode
       </label>
       <input
-        id="kod-pocztowy"
+        id="postcode"
         inputMode="numeric"
         autoComplete="postal-code"
         value={value}

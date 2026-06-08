@@ -4,50 +4,50 @@ import { TrustBand } from "@/components/TrustBand";
 import { AntiFrictionBadge } from "@/components/AntiFrictionBadge";
 import { ChevronRight, Heart } from "@/components/icons";
 
-const KROKI = [
+const STEPS = [
   {
     n: 1,
-    t: "Odpowiadasz na 5 pytań",
-    d: "Stopień opieki, region, mobilność, noce, demencja. Dwie minuty, bez rejestracji.",
+    t: "Answer 5 questions",
+    d: "Care level, region, mobility, nights, dementia. Two minutes, no sign-up.",
   },
   {
     n: 2,
-    t: "Widzisz realny koszt",
-    d: "Widełki „od–do” po odliczeniu dofinansowania — nie jedną zawyżoną liczbę.",
+    t: "See the real cost",
+    d: "A from–to range after subsidies — not a single inflated number.",
   },
   {
     n: 3,
-    t: "Poznajesz opiekunów",
-    d: "Pokazujemy dostępność w Twoim regionie i szacowany czas startu opieki.",
+    t: "Meet caregivers",
+    d: "We show availability in your area and the estimated start time.",
   },
 ];
 
 export default function CennikPage() {
   return (
     <AppFrame width="wide">
-      {/* Hero — ciepły, nie transakcyjny */}
+      {/* Hero — warm, not transactional */}
       <section className="pt-4">
         <span className="pill bg-accent-100 text-accent-800">
           <Heart className="h-3.5 w-3.5" fill="currentColor" stroke="none" />
-          Opieka, na którą Cię stać
+          Care you can afford
         </span>
         <h1 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl">
-          Ile kosztuje całodobowa opieka dla Twojej mamy —{" "}
-          <span className="text-accent-700">po odliczeniu dofinansowania?</span>
+          What does round-the-clock care for your mum really cost —{" "}
+          <span className="text-accent-700">after subsidies?</span>
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-ink-soft">
-          Policz realny, miesięczny wkład własny w dwie minuty. Bez rejestracji,
-          bez podawania danych — zobacz kwotę, którą faktycznie zapłacisz.
+          Work out your real monthly out-of-pocket cost in two minutes. No
+          sign-up, no personal details — just the figure you&apos;ll actually pay.
         </p>
 
         <div className="mt-7">
           <Link href="/kalkulator" className="btn-primary">
-            Policz koszt opieki
+            Calculate the cost
             <ChevronRight className="h-5 w-5" />
           </Link>
           <div className="mt-3">
             <AntiFrictionBadge
-              items={["Bezpłatnie", "Anonimowo", "Bez rejestracji", "2 minuty"]}
+              items={["Free", "Anonymous", "No sign-up", "2 minutes"]}
             />
           </div>
         </div>
@@ -57,13 +57,13 @@ export default function CennikPage() {
         </div>
       </section>
 
-      {/* Jak to działa — 3 kroki */}
+      {/* How it works — 3 steps */}
       <section className="mt-12">
         <h2 className="text-xl font-semibold tracking-tight text-ink">
-          Jak to działa
+          How it works
         </h2>
         <ol className="mt-5 grid gap-4 sm:grid-cols-3">
-          {KROKI.map((k) => (
+          {STEPS.map((k) => (
             <li key={k.n} className="card">
               <span className="tnum grid h-9 w-9 place-items-center rounded-full bg-accent-600 text-base font-semibold text-white">
                 {k.n}
@@ -78,7 +78,7 @@ export default function CennikPage() {
 
         <div className="mt-8">
           <Link href="/kalkulator" className="btn-primary">
-            Zacznij — policz koszt
+            Start — calculate the cost
             <ChevronRight className="h-5 w-5" />
           </Link>
         </div>

@@ -1,5 +1,5 @@
 export function AntiFrictionBadge({
-  items = ["Bezpłatnie", "anonimowo", "bez rejestracji"],
+  items = ["Free", "anonymous", "no sign-up"],
   className = "",
 }: {
   items?: string[];
