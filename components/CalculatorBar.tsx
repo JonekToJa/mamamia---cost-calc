@@ -19,7 +19,7 @@ export function CalculatorBar({
 }) {
   return (
     <div className="fixed inset-x-0 bottom-0 z-20 border-t border-line bg-canvas/95 backdrop-blur">
-      <div className="mx-auto flex max-w-screenpad items-center gap-3 px-5 py-3">
+      <div className="mx-auto flex max-w-2xl items-center gap-4 px-5 py-3">
         {/* Left — live estimate */}
         <div className="min-w-0 flex-1">
           <p className="text-[11px] font-medium uppercase tracking-wide text-ink-faint">
@@ -30,11 +30,11 @@ export function CalculatorBar({
             <span className="text-xs font-normal text-ink-soft"> / mo</span>
           </p>
           {wyc.nocyInfo ? (
-            <p className="mt-0.5 hidden truncate text-xs font-medium text-amber-700 sm:block">
+            <p className="mt-0.5 hidden text-xs font-medium text-amber-700 sm:block">
               Base only — night care needs a custom quote
             </p>
           ) : (
-            <p className="tnum mt-0.5 hidden truncate text-xs text-ink-faint sm:block">
+            <p className="tnum mt-0.5 hidden text-xs text-ink-faint sm:block">
               Cost {eur(wyc.bruttoMin)}–{eur(wyc.bruttoMax)} − subsidies ~
               {eur(wyc.dofinansowanie)}
             </p>

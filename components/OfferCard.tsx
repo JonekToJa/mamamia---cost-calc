@@ -1,5 +1,15 @@
-import { PRZYKLAD } from "@/lib/dane-przykladowe";
-import { Check, Phone, ChevronRight } from "./icons";
+import { PRZYKLAD, eur } from "@/lib/dane-przykladowe";
+import { wycena, dostepnosc, type CalcInput, type Stopien } from "@/lib/pricing";
+import { Users, Clock, Check, ChevronRight, Phone } from "./icons";
+
+// Dashboard: estimate + "finish your offer" merged into one section.
+const input: CalcInput = {
+  stopienOpieki: PRZYKLAD.stopienOpieki as Stopien,
+  mobilnosc: PRZYKLAD.mobilnosc,
+  demencja: PRZYKLAD.demencja,
+  noce: PRZYKLAD.noce,
+  regionRzadki: false,
+};
 
 const SECTIONS = [
   { name: "Assistive devices", done: true },
@@ -9,42 +19,66 @@ const SECTIONS = [
   { name: "Additional notes", done: false },
 ];
 
-// The platform's MAIN card: a quote builder to finish.
-export function ProfileCompletionCard() {
-  const p = PRZYKLAD;
+export function OfferCard() {
+  const w = wycena(input);
+  const d = dostepnosc(input);
   return (
-    <div className="card border-accent-200 bg-accent-50/40">
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <h2 className="text-lg font-semibold text-ink">
-            Finish your care profile
-          </h2>
-          <p className="mt-1 text-sm text-ink-soft">
-            The more detail you add, the better the caregiver match.
-          </p>
-        </div>
-        <span className="pill shrink-0 border border-accent-200 bg-white text-accent-700">
-          quote builder
+    <div className="card">
+      {/* Your estimate */}
+      <div className="flex items-center justify-between gap-2">
+        <h2 className="text-base font-semibold text-ink">Your estimate</h2>
+        <span className="pill bg-accent-100 text-accent-800">estimate</span>
+      </div>
+      <p className="tnum mt-2 text-2xl font-bold text-accent-700">
+        {eur(w.nettoMin)} – {eur(w.nettoMax)}
+        <span className="text-sm font-normal text-ink-soft"> / mo net</span>
+      </p>
+      <p className="tnum mt-1 text-sm text-ink-faint">
+        Cost {eur(w.bruttoMin)}–{eur(w.bruttoMax)} − subsidies ~
+        {eur(w.dofinansowanie)}
+      </p>
+      <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5 text-sm text-ink-soft">
+        <span className="inline-flex items-center gap-1.5">
+          <Users className="h-4 w-4 text-accent-600" />≈ {d.liczbaOpiekunow}{" "}
+          caregivers
+        </span>
+        <span className="inline-flex items-center gap-1.5">
+          <Clock className="h-4 w-4 text-accent-600" />
+          starts in {d.startDni}
         </span>
       </div>
 
-      {/* Progress bar */}
+      <hr className="my-5 border-line" />
+
+      {/* Finish your offer */}
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <h3 className="text-lg font-semibold text-ink">Finish your offer</h3>
+          <p className="mt-1 text-sm text-ink-soft">
+            Complete the details so we can post your request and caregivers can
+            send you offers.
+          </p>
+        </div>
+        <span className="pill shrink-0 border border-accent-200 bg-white text-accent-700">
+          offer
+        </span>
+      </div>
+
       <div className="mt-4">
         <div className="flex items-center justify-between text-sm">
           <span className="font-medium text-ink">Completed</span>
           <span className="tnum font-semibold text-accent-700">
-            {p.postepProfilu}%
+            {PRZYKLAD.postepProfilu}%
           </span>
         </div>
-        <div className="mt-1.5 h-2.5 w-full overflow-hidden rounded-full bg-white">
+        <div className="mt-1.5 h-2.5 w-full overflow-hidden rounded-full bg-canvas">
           <div
             className="h-full rounded-full bg-accent-500 transition-all"
-            style={{ width: `${p.postepProfilu}%` }}
+            style={{ width: `${PRZYKLAD.postepProfilu}%` }}
           />
         </div>
       </div>
 
-      {/* Remaining sections */}
       <ul className="mt-4 divide-y divide-line overflow-hidden rounded-xl border border-line bg-white">
         {SECTIONS.map((s) => (
           <li
@@ -72,14 +106,12 @@ export function ProfileCompletionCard() {
         ))}
       </ul>
 
-      {/* Two paths */}
       <div className="mt-4 flex flex-col gap-2.5">
         <button type="button" className="btn-primary">
           Finish it yourself (5 min)
         </button>
         <button type="button" className="btn-secondary">
-          <Phone className="h-4 w-4" />
-          or an advisor completes it with you by phone
+          <Phone className="h-4 w-4" />I need help
         </button>
       </div>
     </div>

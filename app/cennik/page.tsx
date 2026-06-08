@@ -1,8 +1,7 @@
 import { AppFrame } from "@/components/AppFrame";
 import { TrustBand } from "@/components/TrustBand";
-import { AntiFrictionBadge } from "@/components/AntiFrictionBadge";
 import { StartEstimateForm } from "@/components/StartEstimateForm";
-import { ChevronRight, Heart } from "@/components/icons";
+import { Heart } from "@/components/icons";
 
 const STEPS = [
   {
@@ -40,25 +39,17 @@ export default function CennikPage() {
           month — then request care and we&apos;ll line up available caregivers
           near you. No sign-up to see your numbers.
         </p>
-
-        <div className="mt-7">
-          <a href="#start" className="btn-primary">
-            Get your estimate
-            <ChevronRight className="h-5 w-5" />
-          </a>
-          <div className="mt-3">
-            <AntiFrictionBadge
-              items={["Free", "Anonymous", "No sign-up", "2 minutes"]}
-            />
-          </div>
-        </div>
-
-        <div className="mt-8 border-t border-line pt-6">
+        <div className="mt-5">
           <TrustBand />
         </div>
       </section>
 
-      {/* How it works */}
+      {/* Starter form — continue into the whole calculator */}
+      <section className="mt-10">
+        <StartEstimateForm />
+      </section>
+
+      {/* How it works — under the calculator */}
       <section className="mt-12">
         <h2 className="text-xl font-semibold tracking-tight text-ink">
           How it works
@@ -76,11 +67,6 @@ export default function CennikPage() {
             </li>
           ))}
         </ol>
-      </section>
-
-      {/* Starter form — continue into the whole calculator */}
-      <section id="start" className="mt-12 scroll-mt-28">
-        <StartEstimateForm />
       </section>
     </AppFrame>
   );

@@ -66,9 +66,6 @@ export function StartEstimateForm() {
           Continue to your estimate
           <ChevronRight className="h-5 w-5" />
         </Link>
-        <p className="mt-3 text-sm text-ink-faint">
-          Free · anonymous · no sign-up · 4 more quick questions
-        </p>
       </div>
     </div>
   );

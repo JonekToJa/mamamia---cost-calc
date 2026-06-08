@@ -2,7 +2,7 @@ import { eur } from "@/lib/dane-przykladowe";
 import type { Wycena, Dostepnosc } from "@/lib/pricing";
 import { Users, Clock, Info } from "./icons";
 
-// Result screen — NET = the hero. Hierarchy: net → breakdown → food shown separately → availability teaser.
+// Result screen — NET = the hero. Hierarchy: net → breakdown → food shown separately → availability (prominent).
 export function ResultCard({
   wyc,
   dost,
@@ -55,16 +55,22 @@ export function ResultCard({
         mo
       </p>
 
-      {/* 4. Availability teaser */}
-      <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-1.5 border-t border-line pt-4 text-sm text-ink-soft">
-        <span className="inline-flex items-center gap-1.5">
-          <Users className="h-4 w-4 text-accent-600" />≈ {dost.liczbaOpiekunow}{" "}
-          caregivers in your area
-        </span>
-        <span className="inline-flex items-center gap-1.5">
-          <Clock className="h-4 w-4 text-accent-600" />
-          starts in {dost.startDni}
-        </span>
+      {/* 4. Availability — prominent */}
+      <div className="mt-4 grid grid-cols-2 gap-3">
+        <div className="rounded-xl border border-accent-200 bg-accent-50 p-3 text-center">
+          <Users className="mx-auto h-5 w-5 text-accent-600" />
+          <p className="tnum mt-1 text-xl font-bold text-accent-700">
+            ≈ {dost.liczbaOpiekunow}
+          </p>
+          <p className="text-xs text-ink-soft">caregivers in your area</p>
+        </div>
+        <div className="rounded-xl border border-accent-200 bg-accent-50 p-3 text-center">
+          <Clock className="mx-auto h-5 w-5 text-accent-600" />
+          <p className="mt-1 text-xl font-bold text-accent-700">
+            {dost.startDni}
+          </p>
+          <p className="text-xs text-ink-soft">estimated start</p>
+        </div>
       </div>
     </div>
   );

@@ -1,15 +1,15 @@
 export function ProgressDots({
   current,
   total,
+  label,
 }: {
   current: number;
   total: number;
+  label: string;
 }) {
   return (
-    <div className="flex items-center justify-between">
-      <span className="text-sm font-medium text-ink-soft">
-        Question {current} of {total}
-      </span>
+    <div className="flex items-center justify-between gap-3">
+      <span className="text-sm font-medium text-ink-soft">{label}</span>
       <div className="flex items-center gap-1.5" aria-hidden>
         {Array.from({ length: total }).map((_, i) => (
           <span

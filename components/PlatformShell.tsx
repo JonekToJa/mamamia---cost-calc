@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { PRZYKLAD } from "@/lib/dane-przykladowe";
 import {
-  Grid,
   Shield,
   Users,
   MessageCircle,
@@ -12,8 +11,7 @@ import {
 } from "./icons";
 
 const NAV = [
-  { label: "Dashboard", Icon: Grid, active: true },
-  { label: "Care profile", Icon: Shield, active: false },
+  { label: "Care profile", Icon: Shield, active: true },
   { label: "Caregivers", Icon: Users, active: false },
   { label: "Messages", Icon: MessageCircle, active: false },
   { label: "Documents", Icon: FileText, active: false },

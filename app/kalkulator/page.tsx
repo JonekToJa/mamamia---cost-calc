@@ -10,7 +10,6 @@ import { ChipSelect } from "@/components/ChipSelect";
 import { KodPocztowyInput } from "@/components/KodPocztowyInput";
 import { ResultCard } from "@/components/ResultCard";
 import { CoupleCareNote } from "@/components/CoupleCareNote";
-import { AntiFrictionBadge } from "@/components/AntiFrictionBadge";
 import { CalculatorBar } from "@/components/CalculatorBar";
 import { ChevronLeft, ChevronRight, Info } from "@/components/icons";
 import { PRZYKLAD } from "@/lib/dane-przykladowe";
@@ -26,6 +25,7 @@ import {
 } from "@/lib/pricing";
 
 const TOTAL = 5;
+const FUNNEL_TOTAL = 7; // 5 questions + estimate + sign-up
 
 export default function KalkulatorPage() {
   const router = useRouter();
@@ -66,7 +66,15 @@ export default function KalkulatorPage() {
           </button>
         </div>
 
-        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-ink">
+        <div className="mt-2">
+          <ProgressDots
+            current={TOTAL + 1}
+            total={FUNNEL_TOTAL}
+            label="Your estimate"
+          />
+        </div>
+
+        <h1 className="mt-4 text-2xl font-semibold tracking-tight text-ink">
           Done — here&apos;s your estimate
         </h1>
         <p className="mt-1 text-sm text-ink-soft">
@@ -95,12 +103,9 @@ export default function KalkulatorPage() {
         {/* CTA */}
         <div className="mt-6">
           <Link href="/rejestracja" className="btn-primary">
-            Create offer
+            Find my caregiver
             <ChevronRight className="h-5 w-5" />
           </Link>
-          <p className="mt-3 text-center text-sm text-ink-faint sm:text-left">
-            Free · no commitment
-          </p>
         </div>
       </AppFrame>
     );
@@ -110,11 +115,11 @@ export default function KalkulatorPage() {
   return (
     <AppFrame>
       <div className="flex flex-col gap-6 pb-28">
-        <div className="flex justify-center">
-          <AntiFrictionBadge />
-        </div>
-
-        <ProgressDots current={step + 1} total={TOTAL} />
+        <ProgressDots
+          current={step + 1}
+          total={FUNNEL_TOTAL}
+          label={`Question ${step + 1} of ${TOTAL}`}
+        />
 
         <div>
           {step === 0 && (

@@ -3,10 +3,11 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { AppFrame } from "@/components/AppFrame";
+import { ProgressDots } from "@/components/ProgressDots";
 import { ChipSelect } from "@/components/ChipSelect";
 import { ContactToggleField } from "@/components/ContactToggleField";
 import { ConsentCheckbox } from "@/components/ConsentCheckbox";
-import { ChevronRight, Clock, Lock, Eye, EyeOff } from "@/components/icons";
+import { ChevronRight, Lock, Eye, EyeOff } from "@/components/icons";
 
 function Field({
   label,
@@ -35,6 +36,10 @@ export default function RejestracjaPage() {
   return (
     <AppFrame>
       <div className="pt-2">
+        <ProgressDots current={7} total={7} label="Create your account" />
+      </div>
+
+      <div className="mt-5">
         <h1 className="text-2xl font-semibold tracking-tight text-ink">
           Almost there — create your account
         </h1>
@@ -110,10 +115,6 @@ export default function RejestracjaPage() {
             I agree to be contacted about arranging care and accept the terms and
             privacy policy.
           </ConsentCheckbox>
-          <p className="mt-3 flex items-center gap-2 border-t border-line pt-3 text-sm text-ink-faint">
-            <Clock className="h-4 w-4 text-accent-600" />
-            An advisor will get back to you within 60 minutes.
-          </p>
         </div>
 
         <div>
@@ -125,9 +126,6 @@ export default function RejestracjaPage() {
             Create account
             <ChevronRight className="h-5 w-5" />
           </button>
-          <p className="mt-3 text-center text-sm text-ink-faint sm:text-left">
-            No commitment · you can opt out anytime.
-          </p>
         </div>
       </div>
     </AppFrame>
