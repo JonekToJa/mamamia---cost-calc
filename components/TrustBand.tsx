@@ -1,12 +1,11 @@
 import type { ComponentType, SVGProps } from "react";
-import { Heart, Shield, Clock } from "./icons";
+import { Heart, Shield } from "./icons";
 
 type Item = { icon: ComponentType<SVGProps<SVGSVGElement>>; text: string };
 
 const DEFAULT: Item[] = [
   { icon: Heart, text: "19 years of experience" },
   { icon: Shield, text: "vetted caregivers" },
-  { icon: Clock, text: "matches within 60 minutes" },
 ];
 
 export function TrustBand({ items = DEFAULT }: { items?: Item[] }) {
